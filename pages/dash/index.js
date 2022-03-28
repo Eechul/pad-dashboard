@@ -6,9 +6,8 @@ const fetcher = (url) => fetch(url).then((res) => {
 	return res.json()
 })
 
-export default function Home() {
-	const { data } = useSwr('/api/weather', fetcher)
-	console.log(data)
+export default function Dash() {
+	const { data } = useSwr('/api/weather', fetcher);
 	return (
 		<Row gutter={16}>
 			<Col span={12}>
@@ -18,9 +17,10 @@ export default function Home() {
 			</Col>
 			<Col span={12}>
 				{
-					data ? (<div dangerouslySetInnerHTML={ {__html: data.result.sub} }></div>) : 'loading'
+					data ? (<div dangerouslySetInnerHTML={ {__html: data.result.summary} }></div>) : 'loading'
 				}
 			</Col>
+			
 		</Row>
 	)
 }
